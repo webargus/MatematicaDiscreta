@@ -38,7 +38,7 @@ def is_prime(nn):
 def is_prime_naif(nn):
     if nn == 2:     # retorna True pois 2 é primo
         return True
-    for div in range(3, n):     # verifica divisibilidade desde 3 até n-1, inclusive pelos pares
+    for div in range(3, nn):     # verifica divisibilidade desde 3 até n-1, inclusive pelos pares
         if nn % div == 0:
             return False
     return True
