@@ -17,9 +17,9 @@ while 1:
         x0 = int(input("Entre a semente ou 0 para sair: "))
         if x0 == 0:
             exit()
-        s = str(x0)
-        r = []
-        while 1:
+
+        r = []  # lista para acumular números randômicos gerados
+        while 1:    # gera randoms até sequência se repetir
             x0 = x0 ** 2  # eleva semente ao quadrado
             s = str(x0)  # converte nova semente em cadeia de caracteres numéricos
             # completa com 1 zero à esquerda caso semente não tenha nº par de algarismos
