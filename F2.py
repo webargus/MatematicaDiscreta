@@ -11,27 +11,29 @@
 
 '''
 
-#   Loop para entrada e validação da quantidade (n) de números aleatórios a gerar e a semente (X0)
+#   Loop para entrada e validação da semente (X0)
 while 1:
     try:
-        n, x0 = [int(x) for x in input("Entre a quantidade e a semente separadas por espaço: ").split()]
-        if x0 < 10:
-            raise ValueError
-        break
+        x0 = int(input("Entre a semente ou 0 para sair: "))
+        if x0 == 0:
+            exit()
+        s = str(x0)
+        r = []
+        while 1:
+            x0 = x0 ** 2  # eleva semente ao quadrado
+            s = str(x0)  # converte nova semente em cadeia de caracteres numéricos
+            if len(s) % 2 == 1:  # completa com 1 zero à esquerda caso semente não tenha nº par de algarismos
+                s.zfill(1)
+            init = len(s) // 2 - 1  # toma string de comprimento=2 a partir de um caracter à esquerda do meio
+            s = s[init:init + 2]
+            if s in r:  # imprime lista e aborta loop se semente já ocorreu antes
+                print(", ".join(r))
+                break
+            r.append(s)  # acumula resultado na lista de resultados
+            x0 = int(s)  # transforma string em inteiro e repete o loop
     except ValueError:
-        print("Entrada inválida! Por favor, entre só inteiros e no mínimo 2 algarismos para a semente.")
+        print("Entrada inválida! Por favor, entre só inteiros válidos para a semente.")
 
-
-s = str(x0)
-for i in range(n):
-    print(s.zfill(2))       # imprime resultado preenchido com 0 à esquerda, se necessário
-    x0 = x0**2              # eleva semente ao quadrado
-    s = str(x0)             # converte nova semente em cadeia de caracteres numéricos
-    if len(s) % 2 == 1:     # completa com zero à esquerda caso nova semente não tenha nº par de algarismos
-        s.zfill(1)
-    init = len(s)//2 - 1    # toma string de comprimento=2 a partir de um caracter à esquerda do meio
-    s = s[init:init+2]
-    x0 = int(s)             # transforma string em inteiro e repete o loop
 
 
 
