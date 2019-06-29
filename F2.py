@@ -22,9 +22,11 @@ while 1:
         while 1:
             x0 = x0 ** 2  # eleva semente ao quadrado
             s = str(x0)  # converte nova semente em cadeia de caracteres numéricos
-            if len(s) % 2 == 1:  # completa com 1 zero à esquerda caso semente não tenha nº par de algarismos
-                s.zfill(1)
-            init = len(s) // 2 - 1  # toma string de comprimento=2 a partir de um caracter à esquerda do meio
+            # completa com 1 zero à esquerda caso semente não tenha nº par de algarismos
+            if len(s) & 1 == 1:
+                s = '0' + s
+            # toma substring de comprimento=2 a partir de um caracter à esquerda do meio da string
+            init = len(s) // 2 - 1
             s = s[init:init + 2]
             if s in r:  # imprime lista e aborta loop se semente já ocorreu antes
                 print(", ".join(r))
