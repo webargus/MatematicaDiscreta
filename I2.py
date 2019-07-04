@@ -11,9 +11,9 @@
     Escreva um programa que recebe um inteiro n > 1 e que verifica, através de divisões
     sucessivas se este inteiro é um número primo.
 
-    OBS: por falta de uma definição precisa do que seja o método ingênuo, implementamos duas
-    funções, is_prime e is_prime_naif; ambas verificam a primalidade através de divisões
-    sucessivas, sendo que a primeira (is_prime) descarta a verificação dos pares, testa a
+    OBS: em dúvida quanto a que seja o método ingênuo, implementamos duas
+    funções, is_prime_naif_1 e is_prime_naif_2; ambas verificam a primalidade através de divisões
+    sucessivas, sendo que a primeira (is_prime_naif_1) descarta a verificação dos pares, testa a
     divisibilidade apenas por inteiros ímpares e executa a verificação somente até a raiz quadrada
     do inteiro cuja primalidade queremos verificar.
 '''
@@ -22,7 +22,7 @@
 # função auxiliar para verificar se um inteiro é primo
 # algoritmo seletivo(ingênuo?): descarta o teste de divisibilidade quando o inteiro é par e
 # verifica divisibilidade por inteiros ímpares somente até a raiz quadrada do número
-def is_prime(nn):
+def is_prime_naif_1(nn):
     if nn == 2:     # retorna True pois 2 é primo
         return True
     if nn % 2 == 0:     # descarta os pares
@@ -35,10 +35,10 @@ def is_prime(nn):
 
 # função para verificar se um inteiro é primo
 # algoritmo ingênuo (?): testa divisibilidade por todos os inteiros de 3 até n-1
-def is_prime_naif(nn):
+def is_prime_naif_2(nn):
     if nn == 2:     # retorna True pois 2 é primo
         return True
-    for div in range(3, nn):     # verifica divisibilidade desde 3 até n-1, inclusive pelos pares
+    for div in range(3, (nn-1)//2, 2):  # verifica divisibilidade pelos ímpares desde 3 até (n-1)/2
         if nn % div == 0:
             return False
     return True
@@ -55,7 +55,7 @@ while 1:
         print("Entrada inválida! Por favor, entre novamente um valor para n > 1.")
 
 s = "%d "
-if not is_prime_naif(n):
+if not is_prime_naif_1(n):
     s += "não "
 s += "é primo."
 print(s % n)
